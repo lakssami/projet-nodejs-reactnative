@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import React , {useState} from 'react'
-
+import React , {useState, useContext } from 'react'
+import { ProfilContext } from '../contexts/profilContext'
 
 const Login = ({navigation}) => {
+  const { setJWT} = useContext(ProfilContext)
     const [email, setEmail] =useState("zrrrt@yahoo.fr")
     const [password, setPassword] =useState("Paris12345")
 
@@ -11,7 +12,9 @@ const Login = ({navigation}) => {
         console.log(identifiant)
         fetch("http://10.0.2.2:4003/login" , { method : "post" , body : JSON.stringify(identifiant), headers : {"content-type" : "application/json"}})
         .then(reponse=> reponse.json())
-        .then(data=>console.log(data))
+        .then(data=>{
+          console.log(data)
+          setJWT(data.token)})
     }
   return (
     <View>
