@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React , {useState, useEffect} from 'react'
 
-const Single = ({route} => {
+const Single = ({route}) => {
   const [resultat, setResultat]=useState({})
 
     useEffect(function(){
     fetch("http://10.0.2.2:4003/" + route.params.id)
         .then(reponse=> reponse.json())
         .then(data=>{setResultat(data);
-          console.log(data)
+          //console.log(data)
           })
         },[])
     
@@ -22,4 +22,4 @@ const Single = ({route} => {
 
 export default Single
 
-const styles = Stylesheet.create({})
+const styles = StyleSheet.create({})

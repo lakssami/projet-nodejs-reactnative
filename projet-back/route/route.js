@@ -29,7 +29,7 @@ route.put("/:id",[ idValid, isValidOeuvre ], async(request, reponse)=>{
     return reponse.json(oeuvreUpdated)
 } )
 
-route.delete("/:id", [ autorisation, isAdmin, isValidOeuvre ], async(request, reponse)=>{
+route.delete("/:id", [ /*autorisation, isAdmin,*/ idValid ], async(request, reponse)=>{
     const id =request.params.id
     const deleteOeuvre = await Oeuvre.findByIdAndRemove(id)
     return reponse.json(deleteOeuvre)
