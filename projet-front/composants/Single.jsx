@@ -1,21 +1,25 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React , {useState, useEffect} from 'react'
 
-const Single = ({route}) => {
-    fetch("http://10.0.2.2:4003/" , { method : "get" , body : JSON.stringify()})
+const Single = ({route} => {
+  const [resultat, setResultat]=useState({})
+
+    useEffect(function(){
+    fetch("http://10.0.2.2:4003/" + route.params.id)
         .then(reponse=> reponse.json())
-        .then(data=>{
+        .then(data=>{setResultat(data);
           console.log(data)
           })
+        },[])
     
   return (
     <View>
       <Text>Détails de l'oeuvre</Text>
-      <Text>{route.params.id}</Text>
+      <Text>{JSON.stringify(resultat.description)}</Text>
     </View>
   )
 }
 
 export default Single
 
-const styles = StyleSheet.create({})
+const styles = Stylesheet.create({})
