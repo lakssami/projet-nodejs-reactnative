@@ -8,7 +8,7 @@ route.get("/", idValid, (request, reponse)=>{
    return reponse.json({msg : "les oeuvres"})
 })
 
-route.post("/", [autorisation, isValidOeuvre], async (request, reponse)=>{
+route.post("/", [/*autorisation, isValidOeuvre*/], async (request, reponse)=>{
     const {body} = request
     const dt_creation = new Date();
     const newOeuvre = new Oeuvre ({ ... body, dt_creation : dt_creation})
@@ -22,7 +22,7 @@ route.get("/all", async (request, reponse)=>{
     return reponse.json(tousLesOeuvres)
 })
 
-route.put("/:id",[ idValid, isValidOeuvre ], async(request, reponse)=>{
+route.put("/:id",[ idValid, isValidOeuvre], async(request, reponse)=>{
     const id = request.params.id ;
     const {body}=request;
     const oeuvreUpdated = await Oeuvre.findByIdAndUpdate(id,{ $set : body} , { new : true } )
